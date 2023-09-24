@@ -1,15 +1,52 @@
-To run this project locally --
+# GitHub Finder
 
-1. Clone this project.
+GitHub Finder is a web application built with React that allows you to search for GitHub users and view their profiles and repositories.
+# Before 
+![GitHub Finder Screenshot](./public/GItFinder.png)
 
-2. Go to directory of the project and do `npm install` to install all dependencies.
 
-3. then to run the project `npm run dev`
+## Features
 
-....
-this is Home screen
-![plot](./src/assets/homescreen.png)
+- Search for GitHub users by their username.
+- View detailed user profiles, including their avatar, name, location, bio, and more.
 
-and after searching a profile
-![plot](./src/assets/searching.png)
 
+## Demo
+
+You can try out the GitHub Finder application live at [GitHub Finder Demo](https://gitfinder-praveen.vercel.app/).
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Praveenskg/GitHub_finder.git
+```
+
+Go to the project directory
+
+```bash
+  cd GitHub_finder
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+
+## Tech Stack
+
+**Client:** React, TailwindCSS
+
+## Authors
+- [@Praveen Singh](https://www.github.com/Praveenskg)
