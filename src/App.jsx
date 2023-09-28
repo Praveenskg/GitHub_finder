@@ -4,6 +4,7 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -20,8 +21,11 @@ const App = () => {
 
       const userData = await response.json();
       setUser(userData);
+      setSearched(true);
     } catch (error) {
       console.error("Error fetching user data:", error);
+      setUser(null);
+      setSearched(true);
     } finally {
       setIsLoading(false);
     }
@@ -31,33 +35,31 @@ const App = () => {
     <>
       <LoadingScreen />
       <div className="  bg-gray-100 overflow-hidden h-[100vh] ">
-        <div className="">
-          <h1 className=" text-3xl md:text-4xl   shadow-blue-200 lg:text-5xl text-center font-bold text-dark ">
-            Github Finder
-          </h1>
-          <div className="flex w-full items-center justify-center m-4">
-            <form
-              className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white"
-              onSubmit={handleSearch}
-            >
-              <div className="my-8 flex">
-                <input
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  type="text"
-                  className="w-full border rounded-md p-3"
-                  placeholder="Enter GitHub Username"
-                />
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white font-bold py-3 px-6 rounded mx-3 hover:bg-blue-600"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+        <h1 className=" text-3xl md:text-4xl   shadow-blue-200 lg:text-5xl text-center font-bold text-dark ">
+          Github Finder
+        </h1>
+        <div className="flex w-full items-center justify-center m-4">
+          <form
+            className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white"
+            onSubmit={handleSearch}
+          >
+            <div className="my-8 flex">
+              <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                type="text"
+                className="w-full rounded-md p-3 focus:border-teal-600 border-2 border-teal-400"
+                placeholder="Enter GitHub Username"
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 text-white font-bold py-3 px-6 rounded mx-3 hover:bg-teal-400"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
         {isLoading && (
           <div className="flex w-full items-center justify-center m-4">
@@ -70,6 +72,18 @@ const App = () => {
                 </div>
                 <div className="bottom-5 right-0 h-4 w-4 rounded-full bg-slate-400"></div>
               </div>
+            </div>
+          </div>
+        )}
+        {searched && !user && !isLoading && (
+          <div className="flex w-full items-center justify-center m-4">
+            <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white">
+              <p className="text-center text-6xl text-red-500 font-bold">
+                No user found.
+              </p>
+              <p className="text-center text-2xl text-red-400 font-bold">
+                Try again using deferent username
+              </p>
             </div>
           </div>
         )}
